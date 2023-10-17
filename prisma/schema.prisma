@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Org {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  password_hash String
+  whatsapp      String
+  city          String
+  street        String
+  street_number String
+  created_at    DateTime @default(now())
+  pets          Pet[]
+
+  @@index([city])
+  @@map("orgs")
+}
+
+model Pet {
+  id           String               @id @default(uuid())
+  name         String
+  about        String
+  age          PetAge
+  size         PetSize
+  energy_level PetEnergyLevel
+  independency PetIndependencyLevel
+  space_need   PetSpaceNeed
+  requirements String?
+  org_id       String
+  org          Org                  @relation(fields: [org_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([org_id])
+  @@map("pets")
+}
+
+enum PetAge {
+  YOUNG
+  TEEN
+  ADULT
+}
+
+enum PetSize {
+  SMALL
+  MEDIUM
+  BIG
+}
+
+enum PetEnergyLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum PetIndependencyLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum PetSpaceNeed {
+  SMALL
+  MEDIUM
+  BIG
+}
