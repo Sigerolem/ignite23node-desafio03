@@ -6,7 +6,7 @@
 - [x][x] Deve ser possível listar todos os pets disponíveis para adoção em uma cidade
 - [x][x] Deve ser possível filtrar pets por suas características
 - [x][x] Todos os filtros, além da cidade, são opcionais
-- [x][ ] Deve ser possível visualizar detalhes de um pet para adoção
+- [x][x] Deve ser possível visualizar detalhes de um pet para adoção
 
 ### Regras de negócio
 

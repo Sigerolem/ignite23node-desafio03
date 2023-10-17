@@ -47,7 +47,7 @@ describe('GET PET DETAILS USE CASE', () => {
 
   it('should not get pets detail with wrong id', async () => {
     const { id: orgId } = await orgsRepository.create(newOrgData)
-    const { id } = await petsRepository.create({ orgId, petData: newPetData })
+    await petsRepository.create({ orgId, petData: newPetData })
 
     const pet = await useCase.execute('wrongId')
 
